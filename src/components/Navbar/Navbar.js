@@ -29,8 +29,8 @@ export default function Navbar() {
     ];
     const navigate = useNavigate();
 
-    const handleNavLinkClick = (navLink) => {
-        const path = `/${navLink.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`;
+    const handleNavLinkClick = () => {
+        const path = `/shop`;
         navigate(path);
     };
 

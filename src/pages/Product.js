@@ -3,7 +3,7 @@ import { FilterContainer, ProductDetailsContainer, ProductSamplesContainer } fro
 import { ProductSampleCarousel } from '../components/index';
 import { Breadcrumb } from '../components/index.js';
 import { useParams } from "react-router-dom";
-import { products } from '../utils/Products';
+import { products } from '../utils/Products.js';
 export default function Product() {
     // console.log(products);
     let { productID } = useParams();
@@ -12,7 +12,6 @@ export default function Product() {
         <div>
             <Breadcrumb addItem={product} />
             <FilterContainer />
-
             <ProductSampleCarousel product={product} />
             <ProductSamplesContainer product={product} />
             <ProductDetailsContainer product={product} />
