@@ -1,4 +1,6 @@
 import React from 'react'
+import { FaTimes } from 'react-icons/fa';
+
 import './Modal.css';
 import { BagContainer, WishListContainer } from '../index';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,7 +18,7 @@ export default function Modal() {
             case "bag":
                 return <BagContainer />;
             case "wishlist":
-                return <WishListContainer />;
+                return <WishListContainer />;   
             default:
                 return <BagContainer />;
         }
@@ -27,7 +29,7 @@ export default function Modal() {
                 className="modal-close-button"
                 onClick={() => dispatch(closeModal())}
             >
-                <i class="fas fa-times"></i>
+                <FaTimes className=''/>
             </button>
             {
                 renderSwitch(modalContent)
