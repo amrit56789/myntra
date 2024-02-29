@@ -2,7 +2,7 @@ import React from 'react'
 import { FaTimes } from 'react-icons/fa';
 
 import './Modal.css';
-import { BagContainer, WishListContainer } from '../index';
+import { BagContainer } from '../index';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../actions/modals';
 export default function Modal() {
@@ -17,8 +17,6 @@ export default function Modal() {
         switch (container) {
             case "bag":
                 return <BagContainer />;
-            case "wishlist":
-                return <WishListContainer />;   
             default:
                 return <BagContainer />;
         }
@@ -29,7 +27,7 @@ export default function Modal() {
                 className="modal-close-button"
                 onClick={() => dispatch(closeModal())}
             >
-                <FaTimes className=''/>
+                <FaTimes className='' />
             </button>
             {
                 renderSwitch(modalContent)

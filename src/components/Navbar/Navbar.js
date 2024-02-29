@@ -31,6 +31,10 @@ export default function Navbar() {
         const path = `/shop`;
         navigate(path);
     };
+    const handleWishList = () => {
+        const path = "/wishlist"
+        navigate(path)
+    }
 
     function searchQueryHandler(query) {
         query = query.trim();
@@ -102,7 +106,7 @@ export default function Navbar() {
                         <PermIdentity className="w-6" />
                         <p className="font-semibold">Profile</p>
                     </div>
-                    <div className="flex flex-column items-center cursor-pointer" onClick={() => dispatch(openModal('wishlist'))}>
+                    <div className="flex flex-column items-center cursor-pointer" onClick={handleWishList}>
                         <FavoriteBorder className="w-6" />
                         <p className="font-semibold">Wishlist</p>
                     </div>
