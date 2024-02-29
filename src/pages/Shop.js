@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from 'react-redux';
 export default function Shops() {
     const dispatch = useDispatch();
     const products = useSelector(state => state.productStore);
+
     useEffect(() => {
         dispatch(fetchProducts());
     }, []);
     return (
-        <div>
-            <Breadcrumb />
+        <div className='w-5/6 mx-auto'>
+            <Breadcrumb addItem={products} />
             <FilterContainer />
             <ProductListContainer products={products} />
         </div>

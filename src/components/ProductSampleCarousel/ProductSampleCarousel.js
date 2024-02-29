@@ -4,7 +4,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 
 export default function ProductSampleCarousel({ product = {} }) { // Provide a default empty object
-    console.log(product, ";;;;;;;;;;;;;;;");
 
     // Conditional rendering check
     if (!product.images || product.images.length === 0) {

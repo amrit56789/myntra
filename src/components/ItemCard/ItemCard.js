@@ -1,87 +1,85 @@
-import React from 'react'
-import './ItemCard.css'
-import {ViewSimilarButton} from '../index';
-import {Link } from "react-router-dom";
-import { addItemToWishlist , removeItemFromWishlist } from '../../actions/wishlist';
-import { useDispatch , useSelector } from 'react-redux'; 
-import { nFormatter , isInWishList } from '../../helpers/general';
-export default function ItemCard( {item , index} ) {
-    
+import React, { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { addItemToWishlist } from '../../actions/wishlist';
+import { ViewCarouselOutlined } from '@mui/icons-material';
+
+export default function MyntraProductCard({ item }) {
+    const [isHovered, setIsHovered] = useState(false);
+    const [showWishlist, setShowWishlist] = useState(false);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
     const dispatch = useDispatch();
-    const wishlist = useSelector(state => state.wishlistStore);
-    let isWishlisted = isInWishList( wishlist , item );
+
+    useEffect(() => {
+        let interval;
+        if (isHovered && item.images && item.images.length > 1) {
+            interval = setInterval(() => {
+                setCurrentImageIndex(currentIndex => (currentIndex + 1) % item.images.length);
+            }, 2000);
+        }
+        return () => clearInterval(interval);
+    }, [isHovered, item.images]);
+
+    const renderIndicatorDots = () => {
+        return item.images.map((_, index) => (
+            <span
+                key={index}
+                className={`inline-block h-2 w-2 mx-1 rounded-full ${currentImageIndex === index ? 'bg-black' : 'bg-gray-400'}`}
+                style={{ transition: 'background-color 0.3s ease' }}
+            ></span>
+        ));
+    };
+    const getTransformStyle = () => ({
+        transform: `translateX(-${currentImageIndex * 100}%)`,
+        transition: 'transform 1s ease-out',
+    });
+
     return (
-        <div className="item-card" key={index}>
-            <div className="item-image">
-                <Link to={`/${item.id}`}>
-                    <img src={(item.images)} alt={item.name}/>
-                </Link>
-                <div className="rating-detail" > 
-                    {item.rating} <i class="fas fa-star star"></i> | {nFormatter(item.numberOfReviews)}
-                </div>
-                <div>
-                    <ViewSimilarButton item={item} externalClassName="view-similar-mobile-button" />
-                </div>
-            </div>
-            <Link to={`/${item.id}`}>
-                <div className="item-info">
-                    <p className="brand-name" >{item.brandName}</p>
-                    <p className="product-name" >{item.productName}</p>
-                    <p className="price-details" >
-                        <span className="price" >Rs. {item.price}</span> 
-                        &nbsp;
-                        <span className="actual-price" >Rs. {item.originalPrice}</span> 
-                        &nbsp;
-                        <span className="discount" >({item.discountPercent}% <span className="off" >OFF</span>)</span> 
-                    </p>
+        <div className="w-72 bg-white rounded-lg overflow-hidden shadow-lg relative m-4 group"
+            onMouseEnter={() => {
+                setShowWishlist(true);
+                setIsHovered(true);
+            }}
+            onMouseLeave={() => {
+                setShowWishlist(false);
+                setIsHovered(false);
+            }}>
+            <Link to={`/${item.id}`} className="block relative overflow-hidden">
+                <div className="flex" style={getTransformStyle()}>
+                    {item.images.map((src, index) => (
+                        <img key={index} src={src} alt={`Slide ${index}`} className="w-full object-cover" style={{ minWidth: '100%' }} />
+                    ))}
                 </div>
             </Link>
-            <div className="item-action">
-                <ViewSimilarButton item={item} externalClassName="item-card-similar-button"/>
-                <button 
-                    className="wishlist-button add-to-wishlist center" 
-                    onClick={()=> dispatch(addItemToWishlist(item))}
-                    style={{display: isWishlisted ? 'none' : 'block'}}
-                >
-                    <i class="far fa-heart heart-add"></i>
-                    &nbsp;
-                    WISHLIST
-                </button>
-                <button 
-                    className="wishlist-button remove-from-wishlist center" 
-                    onClick={()=> dispatch(removeItemFromWishlist(item))}
-                    style={{display: !isWishlisted ? 'none' : 'block'}}
-                >
-                    <i 
-                        class="fas fa-heart heart-remove"
-                        style={{color: 'red'}}
-                    ></i>
-                    &nbsp;
-                    WISHLISTED
-                </button>
-                <p className="available-sizes" >
-                    <span
-                        style={{color: 'black'}}
+            {isHovered && (
+                <div className="mt-2 flex justify-center pb-2">
+                    {renderIndicatorDots()}
+                </div>
+            )}
+            {showWishlist && (
+                <div className="flex justify-center gap-2 p-2 w-full">
+                    <button
+                        className="border w-full border-gray-300 rounded-lg px-6 py-2 text-sm hover:bg-gray-100 transition-colors duration-300 ease-in-out"
+                        onClick={() => dispatch(addItemToWishlist(item))}
                     >
-                        Sizes
-                    </span>
-                    : 38, 40, 42, 44, 46
-                </p>
-            </div>
-            <div className="item-list-mobile-action" >
-                <button 
-                    onClick={()=> dispatch(addItemToWishlist(item))}
-                    style={{display: isWishlisted ? 'none' : 'block'}}
-                >
-                    <i class="far fa-heart heart-add"></i>
-                </button>
-                <button 
-                    onClick={()=> dispatch(removeItemFromWishlist(item))}
-                    style={{display: !isWishlisted ? 'none' : 'block'}}
-                >
-                    <i class="fas fa-heart heart-remove"></i>
-                </button>
+                        Wishlist
+                    </button>
+                </div>
+            )}
+            <div className="p-4">
+                {!showWishlist && (
+                    <div>
+                        <h3 className="text-lg font-bold mb-1">{item.brandName}</h3>
+                        <p className="text-sm truncate mb-1">{item.productName}</p>
+                    </div>
+                )}
+                <div className="flex justify-between items-center">
+                    <span className="text-lg font-bold">₹{item.price}</span>
+                    <span className="text-sm line-through text-gray-400">₹{item.originalPrice}</span>
+                    <span className="text-sm text-red-500">({item.discountPercent}% OFF)</span>
+                </div>
             </div>
         </div>
-    )
+    );
 }
