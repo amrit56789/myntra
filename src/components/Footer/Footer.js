@@ -8,17 +8,20 @@ import ThirdBlock from "./ThirdBlock";
 
 export default function Footer() {
   return (
-    <div className="bg-slate-200">
-      <div className="grid grid-cols-3 py-2 px-10 md:grid-cols-4 md:py-4 md:px-28">
-        <FirstBlock />
-        <SecondBlock />
-        <ThirdBlock />
-        <ForthBlock />
+    <div className="bg-slate-100 mt-8">
+      <div className="w-3/4	mx-auto">
+        <div className="grid grid-cols-3 py-2 px-10 	md:grid-cols-4 md:py-4 md:px-28">
+          <FirstBlock />
+          <SecondBlock />
+          <ThirdBlock />
+          <ForthBlock />
+        </div>
+        <BorderLine />
+        <FooterProductList />
+        <BorderLine />
+        <CompanyDetails />
       </div>
-      <BorderLine />
-      <FooterProductList />
-      <BorderLine />
-      <CompanyDetails />
+
     </div>
   );
 };

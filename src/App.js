@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { Page404 } from './components/index.js';
 import Shops from './pages/Shop.js';
 import Wishlist from './pages/Wishlist.js';
+import Checkout from './pages/Checkout.js';
 function App() {
   const { modals, similarProducts } = useSelector(state => ({
     modals: state.modalsStore,
@@ -21,6 +22,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<Shops />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/checkout/cart" element={<Checkout />} />
           <Route path="/:productID" element={<ProductPage />} />
           <Route path="*" element={<Page404 />} />
         </Routes>

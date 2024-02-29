@@ -15,18 +15,18 @@ export default function FooterProductList() {
 
   return (
     <div className="md:px-28 max-sm:px-10">
-      <h3 className="text-xs font-bold uppercase py-2 p-1">
+      <h3 className="text-sm font-bold py-2 text-gray-600 uppercase p-1 mb-2">
         popular searches
       </h3>
-      <p className="text-sm text-slate-500 font-light p-1 uppercase leading-relaxed">
+      <p className="text-sm text-zinc-500 tracking-wider font-light p-1 leading-relaxed">
         {categories.map((category, index) => (
           <span key={index} className="mr-2">
             {category}{index < categories.length - 1 ? ' | ' : ''}
           </span>
         ))}
       </p>
-      <div className='flex justify-between mt-8 mb-2 text-slate-400 '>
-        <p>In case of any concern, <span className='text-blue-500 font-bold'>Contact Us</span></p>
+      <div className='flex justify-between mt-8 mb-2 text-zinc-400 mb-4'>
+        <p>In case of any concern, <span className='text-blue-500 font-semibold'>Contact Us</span></p>
         <p>© {new Date().getFullYear()} www.myntra.com. All rights reserved.</p>
         <p>A Flipkart company</p>
       </div>

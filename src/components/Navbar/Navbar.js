@@ -36,6 +36,11 @@ export default function Navbar() {
         navigate(path)
     }
 
+    const handleCheckout = () => {
+        const path = "/checkout/cart"
+        navigate(path)
+    }
+
     function searchQueryHandler(query) {
         query = query.trim();
         dispatch(search(query));
@@ -110,7 +115,7 @@ export default function Navbar() {
                         <FavoriteBorder className="w-6" />
                         <p className="font-semibold">Wishlist</p>
                     </div>
-                    <div className="flex flex-col items-center cursor-pointer" onClick={() => dispatch(openModal('bag'))}>
+                    <div className="flex flex-col items-center cursor-pointer" onClick={handleCheckout}>
                         <div className="relative">
                             <ShoppingBagOutlined className="w-6 h-6" />
                             {bagItemCount !== 0 && (
