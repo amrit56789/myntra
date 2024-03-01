@@ -69,7 +69,7 @@ export default function Navbar() {
                         {navLinks.map((navLink, index) => (
                             <div
                                 key={index}
-                                className="relative mx-2 md:mx-4 text-xs font-bold cursor-pointer tracking-wider text-gray-700"
+                                className="relative mx-2 md:mx-4 lg:mx-2 text-xs font-bold cursor-pointer tracking-wider text-gray-700"
                                 onClick={() => handleNavLinkClick(navLink)}
                             >
                                 {navLink}
