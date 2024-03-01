@@ -1,13 +1,14 @@
 import React from "react";
-import { FavoriteBorder, ShoppingBagOutlined, PermIdentity } from '@mui/icons-material';
+import { FavoriteBorder, ShoppingBagOutlined, PermIdentity, MenuOutlined } from '@mui/icons-material';
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
-import { openModal } from "../../actions/modals";
-import { search, toggleSearchState } from "../../actions/search";
+import { search } from "../../actions/search";
+import "./Navbar.css";
 
 export default function Navbar() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { currentSearchQuery, isSearchActive } = useSelector((state) => {
         return {
             currentSearchQuery: state.searchStore.query,
@@ -41,41 +42,50 @@ export default function Navbar() {
         navigate(path)
     }
 
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     function searchQueryHandler(query) {
         query = query.trim();
         dispatch(search(query));
     }
     const bagItemCount = useSelector((state) => state.bagStore.length);
     return (
-        <div className="h-20 w-full flex justify-between items-center sticky top-0 bg-white z-10 mb-8 font-sans">
-            <div className="flex items-center justify-between w-1/3 ml-24 mt-4">
+        <div className="App-navbar h-20 w-full flex justify-between items-center sticky top-0 bg-white z-10 mb-8 font-sans">
+            <div className="menu flex items-center justify-between w-full md:w-1/3 ml-4 md:ml-24 mt-4">
                 <Link to="/">
                     <img
                         src={logo}
                         alt="logo"
-                        className={isSearchActive ? "h-12 w-16 flex" : "h-14 w-14"}
+                        className={`${isSearchActive ? "h-12 w-16" : "logo h-14 w-14"} flex`}
                     />
                 </Link>
-                <div className="flex flex-row">
-                    {navLinks.map((navLink, index) => (
-                        <div
-                            key={index}
-                            className="relative mx-4 text-xs font-bold cursor-pointer tracking-wider text-gray-700"
-                            onClick={() => handleNavLinkClick(navLink)}
-                        >
-                            {navLink}
-                            {navLink === "STUDIO" && (
-                                <div className="absolute -top-3 -right-9 text-white text-xs p-1 font-bold" style={{ color: "#FF487A" }}>
-                                    NEW
-                                </div>
-                            )}
-                        </div>
-                    ))}
+                <div className="hamburger-menu" onClick={toggleMenu}>
+                    <MenuOutlined />
                 </div>
-
+                {!isMenuOpen && (
+                    <div className="nav-list flex flex-row mt-2 md:mt-0">
+                        {navLinks.map((navLink, index) => (
+                            <div
+                                key={index}
+                                className="relative mx-2 md:mx-4 text-xs font-bold cursor-pointer tracking-wider text-gray-700"
+                                onClick={() => handleNavLinkClick(navLink)}
+                            >
+                                {navLink}
+                                {navLink === "STUDIO" && (
+                                    <div className="absolute -top-3 -right-3 md:-right-9 text-white text-xs p-1 font-bold" style={{ color: "#FF487A" }}>
+                                        NEW
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
 
-            <div className="flex justify-between items-center w-2/4 mt-4">
+
+            <div className="nav-list flex justify-between items-center w-2/4 mt-4">
                 <div className="relative w-2/4">
                     <input
                         type="text"
@@ -106,7 +116,7 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                <div className={isSearchActive ? "" : "flex justify-between items-center w-52 mr-16"}>
+                <div className={isSearchActive ? "" : "nav-list flex justify-between items-center w-44 mr-16"}>
                     <div className="flex flex-column items-center" >
                         <PermIdentity className="w-6" />
                         <p className="font-semibold text-xs">Profile</p>

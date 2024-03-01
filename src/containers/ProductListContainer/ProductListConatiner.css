@@ -25,7 +25,6 @@
         width : 100%;
     }    
     .product-container-header{
-        position:sticky;
         background-color:white;
         top:60px;
         z-index: 5;

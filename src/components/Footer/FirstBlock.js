@@ -1,7 +1,7 @@
 import React from 'react';
 export default function FirstBlock() {
   return (
-    <div>
+    <div className=''>
       <h3 className="text-sm font-bold py-2 text-gray-600 uppercase p-1 mb-2">ONLINE SHOPPING</h3>
       <ol className="list-container my-1 text-sm font-normal text-slate-500 pl-1 mt-2 text-md tracking-wider">
         <li className='list-item text-zinc-400	font-normal mb-1'>Men</li>

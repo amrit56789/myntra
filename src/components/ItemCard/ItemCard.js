@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addItemToWishlist } from '../../actions/wishlist';
-import { ViewCarouselOutlined } from '@mui/icons-material';
 
 export default function MyntraProductCard({ item }) {
     const [isHovered, setIsHovered] = useState(false);
@@ -30,13 +29,14 @@ export default function MyntraProductCard({ item }) {
             ></span>
         ));
     };
+
     const getTransformStyle = () => ({
         transform: `translateX(-${currentImageIndex * 100}%)`,
         transition: 'transform 1s ease-out',
     });
 
     return (
-        <div className="w-72 bg-white rounded-lg overflow-hidden shadow-lg relative m-4 group"
+        <div className="max-w-xs ml-2 sm:max-w-xs md:max-w-52 lg:max-w-xs xl:max-w-xs mx-auto bg-white rounded-lg overflow-hidden shadow-lg relative m-4 group"
             onMouseEnter={() => {
                 setShowWishlist(true);
                 setIsHovered(true);
@@ -48,7 +48,7 @@ export default function MyntraProductCard({ item }) {
             <Link to={`/${item.id}`} className="block relative overflow-hidden">
                 <div className="flex" style={getTransformStyle()}>
                     {item.images.map((src, index) => (
-                        <img key={index} src={src} alt={`Slide ${index}`} className="w-full object-cover" style={{ minWidth: '100%' }} />
+                        <img key={index} src={src} alt={`Slide ${index}`} className="w-64 object-cover" style={{ minWidth: '100%' }} />
                     ))}
                 </div>
             </Link>
@@ -60,7 +60,7 @@ export default function MyntraProductCard({ item }) {
             {showWishlist && (
                 <div className="flex justify-center gap-2 p-2 w-full">
                     <button
-                        className="border w-full border-gray-300 rounded-lg px-6 py-2 text-sm hover:bg-gray-100 transition-colors duration-300 ease-in-out"
+                        className="border w-full border-gray-300 rounded-lg px-6 py-2 sm:py-2 text-sm hover:bg-gray-100 transition-colors duration-300 ease-in-out"
                         onClick={() => dispatch(addItemToWishlist(item))}
                     >
                         Wishlist
@@ -70,15 +70,17 @@ export default function MyntraProductCard({ item }) {
             <div className="p-4">
                 {!showWishlist && (
                     <div>
-                        <h3 className="text-lg font-bold mb-1">{item.brandName}</h3>
-                        <p className="text-sm truncate mb-1">{item.productName}</p>
+                        <h3 className="text-base sm:text-lg md:text-base lg:text-xl font-bold mb-1">{item.brandName}</h3>
+                        <p className="text-xs sm:text-sm md:text-xs lg:text-sm truncate mb-1">{item.productName}</p>
                     </div>
+
                 )}
                 <div className="flex justify-between items-center">
-                    <span className="text-lg font-bold">₹{item.price}</span>
-                    <span className="text-sm line-through text-gray-400">₹{item.originalPrice}</span>
-                    <span className="text-sm text-red-500">({item.discountPercent}% OFF)</span>
+                    <span className="text-sm sm:text-base lg:text-lg md:text-sm font-bold">₹{item.price}</span>
+                    <span className="text-xs sm:text-sm md:text-sm  lg:text-lg line-through text-gray-400">₹{item.originalPrice}</span>
+                    <span className="text-xs sm:text-sm md:text-xs lg:text-lg text-red-500">({item.discountPercent}% OFF)</span>
                 </div>
+
             </div>
         </div>
     );

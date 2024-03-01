@@ -10,7 +10,7 @@ export const CompanyDetails = () => {
 
     ];
     return (
-        <div className=" md:px-28 text-zinc-400 max-sm:px-10 mt-6 text-sm">
+        <div className="company-details  text-zinc-400 max-sm:px-10 mt-6 text-sm">
             <div className="my-8">
                 <h3 className="text-gray-600 font-bold">ONLINE SHOPPING MADE EASY AT MYNTRA
                 </h3>

@@ -20,7 +20,7 @@ export default function Sort({ sortParameter }) {
 
     return (
         <div
-            className="relative mx-4 mt-3 mb-4 mr-0 py-5 flex items-center border border-gray-300 rounded-lg h-9 w-80 self-end"
+            className="relative mx-1 mt-3 mb-4 mr-0 py-5 flex items-center border border-gray-300 rounded-lg h-9 w-full sm:w-72 self-end"
             onMouseEnter={() => setIsDropdownVisible(true)}
             onMouseLeave={() => setIsDropdownVisible(false)}
         >

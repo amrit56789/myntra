@@ -1,5 +1,5 @@
 import { Navbar, Footer } from './components/index.js';
-import { BagContainer, Modal, SimilarProductsContainer } from './containers/index.js';
+import { Modal, SimilarProductsContainer } from './containers/index.js';
 import { HomePage, ProductPage, BagPage } from './pages/index.js';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -7,6 +7,7 @@ import { Page404 } from './components/index.js';
 import Shops from './pages/Shop.js';
 import Wishlist from './pages/Wishlist.js';
 import Checkout from './pages/Checkout.js';
+import "./App.css"
 function App() {
   const { modals, similarProducts } = useSelector(state => ({
     modals: state.modalsStore,
@@ -15,8 +16,7 @@ function App() {
   return (
     <div className="App" >
       <BrowserRouter>
-        {similarProducts.isActive && <SimilarProductsContainer />}
-        {modals.isActive && <Modal />}
+        {/* {similarProducts.isActive && <SimilarProductsContainer />} */}
         <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./Card.css"
 import r1 from "../../assets/medal worthy/00e27983-d373-4d86-9f25-3e46a18ec12a1690609817622-Top_casual_Styles-_Levi-s-_Tommy_Min_40.png";
 import r2 from "../../assets/medal worthy/26abfeae-7980-4263-aac2-2e6206035da81691142704308-image_png_391142713.png";
 import r3 from "../../assets/medal worthy/2ccbd34a-3340-4b55-bd4e-2ac182e425c11691079149976-image_png_1139490265.png";
@@ -48,9 +49,9 @@ function AdsCaro(props) {
 
 
   return (
-    <div className="md:w-100 max-sm:w-11/12">
+    <div className="second-card md:w-100 max-sm:w-11/12">
       <h1 className="uppercase text-zinc-700 mt-20 mb-20 ml-10
-      max-sm:mt-12 max-sm:mb-10 max-sm:mr-12 max-sm:ml-3 
+      max-sm:mr-12 max-sm:ml-3 
       md:text-3xl max-sm:text-xl  tracking-wider  font-bold ">
         {props.heading}
       </h1>

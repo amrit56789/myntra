@@ -6,9 +6,6 @@ export default function Home() {
             <AddSlider />
             <AdsCaro heading={"medal worthy brands to bag"} />
             <Card />
-            {/* <Breadcrumb /> */}
-            {/* <FilterContainer /> */}
-            {/* <ProductListContainer products={products} /> */}
         </div>
     )
 }
