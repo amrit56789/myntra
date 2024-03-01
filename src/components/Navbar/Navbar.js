@@ -60,7 +60,7 @@ export default function Navbar() {
                     {navLinks.map((navLink, index) => (
                         <div
                             key={index}
-                            className="relative mx-4 text-sm font-bold cursor-pointer tracking-wider text-gray-700"
+                            className="relative mx-4 text-xs font-bold cursor-pointer tracking-wider text-gray-700"
                             onClick={() => handleNavLinkClick(navLink)}
                         >
                             {navLink}
@@ -109,11 +109,11 @@ export default function Navbar() {
                 <div className={isSearchActive ? "" : "flex justify-between items-center w-52 mr-16"}>
                     <div className="flex flex-column items-center" >
                         <PermIdentity className="w-6" />
-                        <p className="font-semibold">Profile</p>
+                        <p className="font-semibold text-xs">Profile</p>
                     </div>
                     <div className="flex flex-column items-center cursor-pointer" onClick={handleWishList}>
                         <FavoriteBorder className="w-6" />
-                        <p className="font-semibold">Wishlist</p>
+                        <p className="font-semibold text-xs">Wishlist</p>
                     </div>
                     <div className="flex flex-col items-center cursor-pointer" onClick={handleCheckout}>
                         <div className="relative">
@@ -124,7 +124,7 @@ export default function Navbar() {
                                 </div>
                             )}
                         </div>
-                        <p className="font-semibold">Bag</p>
+                        <p className="font-semibold text-xs">Bag</p>
                     </div>
 
                 </div>

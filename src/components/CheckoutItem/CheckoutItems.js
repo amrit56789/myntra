@@ -5,27 +5,27 @@ import { emptyBag, removeItemFromBag } from '../../actions/bag';
 import { useDispatch, useSelector } from 'react-redux';
 import { findTotal } from '../../helpers/general';
 import { NavigateNext, TurnedIn, TurnedInNot } from '@mui/icons-material';
+import gift from "../../assets/images/gift.png"
 export default function CheckoutItems() {
      const bag = useSelector(state => state.bagStore);
      const navigate = useNavigate()
      const dispatch = useDispatch();
      const [showMore, setShowMore] = useState(false);
 
-     // console.log(products);
-     // function checkOutHandler(event) {
-     //      console.log("check out");
-     //      let checkoutCheck = true;
-     //      bag.map(product => {
-     //           if (product.size === undefined) {
-     //                window.alert('Please select size for ' + product.productName);
-     //                checkoutCheck = false;
-     //                return;
-     //           }
-     //      })
-     //      if (checkoutCheck) {
-     //           dispatch(emptyBag());
-     //      }
-     // }
+     function checkOutHandler(event) {
+          console.log("check out");
+          let checkoutCheck = true;
+          bag.map(product => {
+               if (product.size === undefined) {
+                    window.alert('Please select size for ' + product.productName);
+                    checkoutCheck = false;
+                    return;
+               }
+          })
+          if (checkoutCheck) {
+               dispatch(emptyBag());
+          }
+     }
 
 
      const handleWishListButton = () => {
@@ -33,9 +33,11 @@ export default function CheckoutItems() {
           navigate(path)
      }
 
-     const handleRemoveItem = (id) => {
-          dispatch(removeItemFromBag(id))
+     const handleRemoveItem = (product) => {
+          console.log("hellow")
+          dispatch(removeItemFromBag(product))
      }
+
      const offers = [
           "10% Instant Discount on ICICI Bank Credit and Debit Cards on a min spend of ₹3,500. TCA",
           "10% Instant Discount on Citi Credit and Debit Cards on a min spend of ₹4,000. TCA",
@@ -50,15 +52,15 @@ export default function CheckoutItems() {
           setShowMore(!showMore);
      };
      return (
-          <div className="w-3/4 mx-auto mb-12" >
-               <div className='first-block w-2/4 flex justify-start flex-column'>
+          <div className="w-3/4 mx-auto mb-12 flex justify-between" >
+               <div className='first-block w-3/5 flex justify-start flex-column'>
                     <div className='address border p-4 flex justify-between items-center'>
                          <div className='text-sm'>
                               <p>Deliver to : <strong>Amrit Singh, 110084</strong></p>
                               <p className='text-gray-400'>House no 3752 Street No 102 B Block Apex Road Sant Nagar Burari, New Delhi</p>
                          </div>
                          <div className='text-sm'>
-                              <button className='border border-red-500 py-2 px-4 rounded-sm text-red-500'>Change Address</button>
+                              <button className='border border-red-800 py-2 px-2 rounded-md text-red-500 ml-2 text-xs'>Change Address</button>
                          </div>
                     </div>
 
@@ -99,7 +101,7 @@ export default function CheckoutItems() {
                                         </div>
                                    </div>
                                    <div>
-                                        <button className='border border-red-500 py-2 px-4 rounded-sm text-red-500'>Remove from Bag</button>
+                                        <button className='border border-red-500 py-2 px-4 rounded-lg text-red-500' onClick={() => handleRemoveItem(product)}>Remove from Bag</button>
                                    </div>
                               </div>
                          )) : (
@@ -121,8 +123,66 @@ export default function CheckoutItems() {
                     </div>
                </div>
 
-               <div className='second-block w-2/4	'>
+               <div className='second-block ml-2 border w-2/5 flex justify-start flex-column p-4'>
+                    <div className='font-semibold text-red-500 '>
+                         Coupons
+                    </div>
+                    <div className='border-b mt-4 flex items-center justify-between mr-2'>
+                         <div className='flex w-2/5 justify-between items-center'>
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 18 18" class="coupons-base-couponIcon"><g fill="none" fill-rule="evenodd" transform="rotate(45 6.086 5.293)"><path stroke="#000" d="M17.5 10V1a1 1 0 0 0-1-1H5.495a1 1 0 0 0-.737.323l-4.136 4.5a1 1 0 0 0 0 1.354l4.136 4.5a1 1 0 0 0 .737.323H16.5a1 1 0 0 0 1-1z"></path><circle cx="5.35" cy="5.35" r="1.35" fill="#000" fill-rule="nonzero"></circle></g></svg>
+                              <h3 className='font-semibold'>Apply Coupons</h3>
+                         </div>
+                         <div>
+                              <button className='text-red-500 border px-4 py-1 rounded-md font-semibold border-red-500 text-sm'>APPLY</button>
+                         </div>
+                    </div>
 
+                    <div className='border-b mt-4 flex flex-column justify-between mr-2'>
+                         <div className=''>
+                              <h4 className='text-sm text-red-600 font-bold'>GIFITING & PERSONALISATION</h4>
+                         </div>
+                         <div className='bg-red-100 rounded-lg my-2 flex justify-between items-center'>
+                              <img src={gift} alt='gift' className='h-32 mx-2' />
+                              <div className='mr-4'>
+                                   <h3 className='text-base mb-1 font-bold'>Buying for a loved one?</h3>
+                                   <p className='text-sm mb-1 text-slate-600'>Gift Wrap and personalised message on card, only Rs. 25</p>
+                                   <p className='text-normal text-red-500 font-semibold text-sm'>ADD GIFT WRAP</p>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div className='price details border-b border-t mt-4 flex flex-column justify-between mr-2'>
+                         <div className='mt-2'>
+                              <h3 className='text-sm text-slate-950 font-bold uppercase'>Price Details ({bag.length} Item)</h3>
+                         </div>
+                         <div className='flex justify-between items-center'>
+                              <div className='text-base leading-7 my-4'>
+                                   <p>Total MRP</p>
+                                   <p>Discount on MRP</p>
+                                   <p>Coupon Discount</p>
+                                   <p>Platform Fee <span className='text-red-500 font-bold'>Know More</span></p>
+                                   <p>Shipping Fee <span className='text-red-500 font-bold'>Know More</span></p>
+                              </div>
+                              <div className='text-base leading-7 my-4 flex items-start flex-col'>
+                                   <p>₹3,349</p>
+                                   <p className='text-red-400'>-₹1,700</p>
+                                   <p className='text-red-600'>Apply Coupon</p>
+                                   <p>20</p>
+                                   <p className='text-red-400'>FREE</p>
+                              </div>
+
+                         </div>
+                    </div>
+
+                    <div className='my-4 flex flex-col' >
+                         <div className='flex justify-between items-center text-slate-950 font-bold mr-2'>
+                              <h2 className=''>Total Amount</h2>
+                              <h2>₹1,719</h2>
+                         </div>
+                         <div className='w-full bg-red-400 rounded-lg text-center py-4 my-4'>
+                              <button className='text-lg text-white font-bold uppercase' onClick={(event) => checkOutHandler(event)}>Buy now with Early Access</button>
+                         </div>
+                    </div>
                </div>
           </div>
      )
