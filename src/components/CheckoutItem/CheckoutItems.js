@@ -15,14 +15,15 @@ export default function CheckoutItems() {
      function checkOutHandler(event) {
           console.log("check out");
           let checkoutCheck = true;
-          bag.map(product => {
-               if (product.size === undefined) {
-                    window.alert('Please select size for ' + product.productName);
-                    checkoutCheck = false;
-                    return;
-               }
-          })
+          // bag.map(product => {
+          //      if (product.size === undefined) {
+          //           window.alert('Please select size for ' + product.productName);
+          //           checkoutCheck = false;
+          //           return;
+          //      }
+          // })
           if (checkoutCheck) {
+               window.alert('Successfully Order');
                dispatch(emptyBag());
           }
      }
