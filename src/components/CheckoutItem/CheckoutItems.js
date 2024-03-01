@@ -56,8 +56,8 @@ export default function CheckoutItems() {
                <div className='first-block w-3/5 flex justify-start flex-column'>
                     <div className='bg-red-100 border p-4 flex rounded-lg justify-between items-center'>
                          <div className='text-sm'>
-                              <p>Deliver to : <strong>Amrit Singh, 110084</strong></p>
-                              <p className='text-gray-400'>House no 3752 Street No 102 B Block Apex Road Sant Nagar Burari, New Delhi</p>
+                              <p>Deliver to : <strong>xxxxxxxx, 110084</strong></p>
+                              <p className='text-gray-400'>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, New Delhi</p>
                          </div>
                          <div className='text-sm'>
                               <button className='border border-red-800 py-2 px-2 rounded-md text-red-500 ml-2 text-xs'>Change Address</button>
