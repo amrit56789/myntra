@@ -65,7 +65,7 @@ export default function Navbar() {
                     <MenuOutlined />
                 </div>
                 {!isMenuOpen && (
-                    <div className="nav-list flex flex-row mt-2 md:mt-0">
+                    <div className="nav-list flex flex-row mt-2 ">
                         {navLinks.map((navLink, index) => (
                             <div
                                 key={index}
@@ -73,7 +73,11 @@ export default function Navbar() {
                                 onClick={() => handleNavLinkClick(navLink)}
                             >
                                 {navLink}
-                              
+                                {navLink === "STUDIO" && (
+                                    <div className="absolute -top-3 -right-3 md:-right-9 text-white text-xs p-1 font-bold" style={{ color: "#FF487A" }}>
+                                        NEW
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </div>
