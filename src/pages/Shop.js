@@ -12,7 +12,7 @@ export default function Shops() {
         dispatch(fetchProducts());
     }, []);
     return (
-        <div className='w-5/6 mx-auto'>
+        <div className='mx-auto'>
             <Breadcrumb addItem={products} />
             <FilterContainer />
             <ProductListContainer products={products} />

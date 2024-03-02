@@ -14,7 +14,7 @@ export default function Color({activeFilter}) {
         }
     }
     return (
-        <div className=" specific-filter-container " >
+        <div className=" specific-filter-container" >
             <div className="filter-title" >COLOR</div>
             {
                 filterColors.map( (color,index) => {

@@ -49,7 +49,7 @@ function AdsCaro(props) {
 
 
   return (
-    <div className="second-card md:w-100 max-sm:w-11/12">
+    <div className="second-card md:w-100 max-sm:w-11/12 overflow-hidden">
       <h1 className="uppercase text-zinc-700 mt-20 mb-20 ml-10
       max-sm:mr-12 max-sm:ml-3 
       md:text-3xl max-sm:text-xl  tracking-wider  font-bold ">

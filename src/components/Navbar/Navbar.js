@@ -53,7 +53,7 @@ export default function Navbar() {
     const bagItemCount = useSelector((state) => state.bagStore.length);
     return (
         <div className="App-navbar h-20 w-full flex justify-between items-center sticky top-0 bg-white z-10 mb-8 font-sans">
-            <div className="menu flex items-center justify-between w-full md:w-1/3 ml-4 md:ml-24 mt-4">
+            <div className="menu flex items-center justify-between md:w-1/3 ml-4 md:ml-24 mt-4">
                 <Link to="/">
                     <img
                         src={logo}
@@ -65,7 +65,7 @@ export default function Navbar() {
                     <MenuOutlined />
                 </div>
                 {!isMenuOpen && (
-                    <div className="nav-list flex flex-row mt-2 ">
+                    <div className="nav-list flex mt-2 ">
                         {navLinks.map((navLink, index) => (
                             <div
                                 key={index}
@@ -89,7 +89,7 @@ export default function Navbar() {
                 <div className="relative w-2/4">
                     <input
                         type="text"
-                        className="w-full pl-20 pr-3 py-2 rounded-md border border-transparent focus:outline-none focus:border-gray-300"
+                        className="search-bar w-full pl-20 pr-3 py-2 rounded-md border border-transparent focus:outline-none focus:border-gray-300"
                         placeholder="Search for products, brands and more"
                         value={query !== null ? query : ""}
                         onChange={(e) => setQuery(e.target.value)}
@@ -103,7 +103,7 @@ export default function Navbar() {
 
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg
-                            className="w-5 h-5 text-gray-500"
+                            className="w-5 h-5 text-gray-500 search-bar "
                             fill="none"
                             strokeLinecap="round"
                             strokeLinejoin="round"

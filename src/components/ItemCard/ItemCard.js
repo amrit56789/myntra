@@ -36,7 +36,7 @@ export default function MyntraProductCard({ item }) {
     });
 
     return (
-        <div className="max-w-xs ml-2 sm:max-w-xs md:max-w-52 lg:max-w-xs xl:max-w-xs mx-auto bg-white rounded-lg overflow-hidden shadow-lg relative m-4 group"
+        <div className="max-w-xs ml-2 sm:max-w-xs md:max-w-52 lg:max-w-xs xl:max-w-xs mx-auto overflow-hidden relative m-4 group"
             onMouseEnter={() => {
                 setShowWishlist(true);
                 setIsHovered(true);
@@ -46,9 +46,9 @@ export default function MyntraProductCard({ item }) {
                 setIsHovered(false);
             }}>
             <Link to={`/${item.id}`} className="block relative overflow-hidden">
-                <div className="flex" style={getTransformStyle()}>
+                <div className="flex w-full" style={getTransformStyle()}>
                     {item.images.map((src, index) => (
-                        <img key={index} src={src} alt={`Slide ${index}`} className="w-64 object-cover" style={{ minWidth: '100%' }} />
+                        <img key={index} src={src} alt={`Slide ${index}`} className="w-1/5" style={{ minWidth: '100%' }} />
                     ))}
                 </div>
             </Link>
@@ -70,15 +70,15 @@ export default function MyntraProductCard({ item }) {
             <div className="p-4">
                 {!showWishlist && (
                     <div>
-                        <h3 className="text-base sm:text-lg md:text-base lg:text-xl font-bold mb-1">{item.brandName}</h3>
+                        <h3 className="text-sm sm:text-lg md:text-base lg:text-lg font-bold mb-1">{item.brandName}</h3>
                         <p className="text-xs sm:text-sm md:text-xs lg:text-sm truncate mb-1">{item.productName}</p>
                     </div>
 
                 )}
                 <div className="flex justify-between items-center">
-                    <span className="text-sm sm:text-base lg:text-lg md:text-sm font-bold">₹{item.price}</span>
-                    <span className="text-xs sm:text-sm md:text-sm  lg:text-lg line-through text-gray-400">₹{item.originalPrice}</span>
-                    <span className="text-xs sm:text-sm md:text-xs lg:text-lg text-red-500">({item.discountPercent}% OFF)</span>
+                    <span className="text-sm sm:text-base lg:text-base md:text-sm font-bold">₹{item.price}</span>
+                    <span className="text-xs sm:text-sm md:text-sm  lg:text-base line-through text-gray-400">₹{item.originalPrice}</span>
+                    <span className="text-xs sm:text-sm md:text-xs lg:text-base text-red-500">({item.discountPercent}% OFF)</span>
                 </div>
 
             </div>
