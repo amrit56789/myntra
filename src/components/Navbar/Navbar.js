@@ -58,7 +58,7 @@ export default function Navbar() {
                     <img
                         src={logo}
                         alt="logo"
-                        className={`${isSearchActive ? "h-12 w-16" : "logo h-14 w-14"} flex`}
+                        className={`${isSearchActive ? "h-12 w-16" : "logo h-14 w-14"} flex logo`}
                     />
                 </Link>
                 <div className="hamburger-menu" onClick={toggleMenu}>

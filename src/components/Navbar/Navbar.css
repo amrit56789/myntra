@@ -29,6 +29,9 @@
     .nav-list {
         display: none; 
     }
+    .logo{
+        margin-left: -10px;
+    }
     .hamburger-menu {
         width: 15vw;
         height: 10vw;
@@ -47,6 +50,7 @@
     .nav-list{
         margin-left: 20px;
     }
+
     .search-bar{
         display: none;
     }
