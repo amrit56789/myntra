@@ -27,7 +27,7 @@ function App() {
           <Route path="*" element={<Page404 />} />
         </Routes>
       </BrowserRouter>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
